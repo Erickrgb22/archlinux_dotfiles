@@ -72,6 +72,10 @@ keys = [
     Key([mod], "r", lazy.spawn("rofi -show run"), desc="Rofi"),
     Key([mod,"shift"],"Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "m", lazy.next_screen(), desc="Toggle between screens"),
+    Key([mod,"shift"],  "comma",  lazy.function(window_to_next_screen)),    
+    Key([mod,"shift"],  "period", lazy.function(window_to_previous_screen)),
+    Key([mod,"control"],"comma",  lazy.function(window_to_next_screen, switch_screen=True)),
+    Key([mod,"control"],"period", lazy.function(window_to_previous_screen, switch_screen=True)),
 
 ]
 
@@ -229,3 +233,22 @@ wl_input_rules = None
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
 wmname = "LG3D"
+
+def window_to_previous_screen(qtile, switch_group=False, switch_screen=False):
+    i = qtile.screens.index(qtile.current_screen)
+    if i != 0:
+        group = qtile.screens[i - 1].group.name
+        qtile.current_window.togroup(group, switch_group=switch_group)
+        if switch_screen == True:
+            qtile.cmd_to_screen(i - 1)
+
+def window_to_next_screen(qtile, switch_group=False, switch_screen=False):
+    i = qtile.screens.index(qtile.current_screen)
+    if i + 1 != len(qtile.screens):
+        group = qtile.screens[i + 1].group.name
+        qtile.current_window.togroup(group, switch_group=switch_group)
+        if switch_screen == True:
+            qtile.cmd_to_screen(i + 1)
+
+keys.extend([
+])
