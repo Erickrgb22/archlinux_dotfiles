@@ -4,4 +4,5 @@ parse_git_branch() {
 }
 export PS1="\u@\h \[\e[32m\]\w \[\e[91m\]\$(parse_git_branch)\[\e[00m\]$ "
 
+alias confedit='GIT_DIR=$HOME/.cfg GIT_WORK_TREE=$HOME nvim ./'
 alias config='/usr/bin/git --git-dir=/home/erick/.cfg/ --work-tree=/home/erick'
