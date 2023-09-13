@@ -6,3 +6,8 @@ export PS1="\u@\h \[\e[32m\]\w \[\e[91m\]\$(parse_git_branch)\[\e[00m\]$ "
 
 alias confedit='GIT_DIR=$HOME/.cfg GIT_WORK_TREE=$HOME nvim ./'
 alias config='/usr/bin/git --git-dir=/home/erick/.cfg/ --work-tree=/home/erick'
+alias srv_status='systemctl status freeradius httpd mariadb'
+alias srv_start='systemctl start freeradius httpd mariadb'
+alias srv_stop='systemctl stop freeradius httpd mariadb'
+alias srv_restart='systemctl restart freeradius httpd mariadb'
+
