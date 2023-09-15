@@ -72,6 +72,7 @@ keys = [
     Key([mod], "r", lazy.spawn("rofi -show run"), desc="Rofi"),
     Key([mod,"shift"],"Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod, "shift"], "space", lazy.next_screen(), desc="Toggle between screens"),
+    Key([mod], "e", lazy.spawn("thunar"), desc="Launch Thunnar File Manager"),
 
 ]
 
