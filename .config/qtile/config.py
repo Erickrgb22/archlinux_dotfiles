@@ -73,6 +73,15 @@ keys = [
     Key([mod,"shift"],"Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod, "shift"], "space", lazy.next_screen(), desc="Toggle between screens"),
     Key([mod], "e", lazy.spawn("thunar"), desc="Launch Thunnar File Manager"),
+    Key([mod], "n", lazy.spawn("termite -e joplin"), desc="Launch joplin in terminal"),
+
+    Key([mod, "control"], "1",
+        lazy.spawn("scrcpy -KM --otg --shortcut-mod=lctrl -s 4bc05ad2 --window-x=0 --window-y=0"),
+        desc="Send IO to Tablet"),
+
+    Key([mod, "control"], "2",
+        lazy.spawn("scrcpy -KM --otg --shortcut-mod=lctrl -s 0fca9bcf0406 --window-x=0 --window-y=0"),
+        desc="Send IO to Phone"),
 
 ]
 
