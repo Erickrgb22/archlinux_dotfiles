@@ -1,0 +1,10 @@
+@theme "/home/erick/.local/share/rofi/themes/rounded-blue-dark.rasi"
+
+configuration {
+	display-drun: "Applications";
+	display-window: "Windows";
+	drun-display-format: "{icon} {name}";
+	modi: "window,run,drun";
+	show-icons: true;
+	icon-theme: "Papirus";
+	}
