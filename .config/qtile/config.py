@@ -69,20 +69,20 @@ keys = [
     Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod], "r", lazy.spawn("rofi -show run"), desc="Rofi"),
+    Key([mod], "r", lazy.spawn("rofi -show drun"), desc="Rofi"),
     Key([mod,"shift"],"Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod, "shift"], "space", lazy.next_screen(), desc="Toggle between screens"),
     Key([mod], "e", lazy.spawn("thunar"), desc="Launch Thunnar File Manager"),
     Key([mod], "n", lazy.spawn("termite -e joplin"), desc="Launch joplin in terminal"),
 
     Key([mod, "control"], "1",
-        lazy.spawn("scrcpy -KM --otg --shortcut-mod=lctrl -s 4bc05ad2 --window-x=0 --window-y=0"),
+        lazy.spawn("scrcpy -KM --otg --shortcut-mod=lctrl -s 4bc05ad2 --window-x=0 --window-y=0 --window-width=200 --window-height=200"),
         desc="Send IO to Tablet"),
 
     Key([mod, "control"], "2",
         lazy.spawn("scrcpy -KM --otg --shortcut-mod=lctrl -s 0fca9bcf0406 --window-x=0 --window-y=0"),
         desc="Send IO to Phone"),
-
+    Key([mod, "shift"], "s", lazy.spawn("flameshot gui")),
 ]
 
 groups = [Group(i) for i in "123456789"]
@@ -101,7 +101,7 @@ for i in groups:
             Key(
                 [mod, "shift"],
                 i.name,
-                lazy.window.togroup(i.name, switch_group=True),
+                lazy.window.togroup(i.name, switch_group=False),
                 desc="Switch to & move focused window to group {}".format(i.name),
             ),
             # Or, use below if you prefer not to switch to that group.
