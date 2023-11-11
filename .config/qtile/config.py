@@ -82,6 +82,13 @@ keys = [
     Key([mod, "control"], "2",
         lazy.spawn("scrcpy -KM --otg --shortcut-mod=lctrl -s 0fca9bcf0406 --window-x=0 --window-y=0"),
         desc="Send IO to Phone"),
+
+    Key([mod, "control"], "3",
+        lazy.spawn("scrcpy -KM --otg --shortcut-mod=lctrl -s 0fca9bcf0406 --window-x=0 --window-y=0"),
+        desc="Send IO to Phone"),
+
+
+
     Key([mod, "shift"], "s", lazy.spawn("flameshot gui")),
 ]
 
@@ -110,7 +117,7 @@ for i in groups:
             #     desc="move focused window to group {}".format(i.name)),
         ]
     )
-
+#comment
 layouts = [
     layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
     layout.Max(),
