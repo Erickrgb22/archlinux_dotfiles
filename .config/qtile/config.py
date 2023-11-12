@@ -72,8 +72,8 @@ keys = [
     Key([mod], "r", lazy.spawn("rofi -show drun"), desc="Rofi"),
     Key([mod,"shift"],"Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod, "shift"], "space", lazy.next_screen(), desc="Toggle between screens"),
-    Key([mod], "e", lazy.spawn("thunar"), desc="Launch Thunnar File Manager"),
-    Key([mod], "n", lazy.spawn("termite -e joplin"), desc="Launch joplin in terminal"),
+    Key([mod], "e", lazy.spawn("ranger"), desc="Launch Thunnar File Manager"),
+    Key([mod], "n", lazy.spawn("obsidian"), desc="Launch joplin in terminal"),
 
     Key([mod, "control"], "1",
         lazy.spawn("scrcpy -KM --otg --shortcut-mod=lctrl -s 4bc05ad2 --window-x=0 --window-y=0 --window-width=200 --window-height=200"),
@@ -93,9 +93,9 @@ keys = [
 ]
 
 groups = []
-group_names = ["WWW", "DEV" ,"SYS", "DOC", "CHAT", "VBOX", "VID", "MUS", "GFX"]
+group_names = ["WWW", "DEV" ,"SYS", "CHAT", "NOTE", "CAL", "DOC", "MED", "VBOX"]
 keynames = [i for i in "123456789"]
-group_labels = ["", "", "", "", "", "", "", "", ""]
+group_labels = ["", "", "", "", "",  "", "󰈙", "", ""]
 for g in range(len(group_names)):
     groups.append(
         Group(
@@ -162,8 +162,8 @@ layouts = [
 
 widget_defaults = dict(
     font="MononokiNerdFont",
-    fontsize=12,
-    padding=3,
+    fontsize=13,
+    padding=4,
 )
 extension_defaults = widget_defaults.copy()
 
