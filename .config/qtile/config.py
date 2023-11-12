@@ -92,34 +92,60 @@ keys = [
     Key([mod, "shift"], "s", lazy.spawn("flameshot gui")),
 ]
 
-groups = [Group(i) for i in "123456789"]
-
-for i in groups:
-    keys.extend(
-        [
-            # mod1 + letter of group = switch to group
-            Key(
-                [mod],
-                i.name,
-                lazy.group[i.name].toscreen(),
-                desc="Switch to group {}".format(i.name),
-            ),
-            # mod1 + shift + letter of group = switch to & move focused window to group
-            Key(
-                [mod, "shift"],
-                i.name,
-                lazy.window.togroup(i.name, switch_group=False),
-                desc="Switch to & move focused window to group {}".format(i.name),
-            ),
-            # Or, use below if you prefer not to switch to that group.
-            # # mod1 + shift + letter of group = move focused window to group
-            # Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
-            #     desc="move focused window to group {}".format(i.name)),
-        ]
+groups = []
+group_names = ["WWW", "DEV" ,"SYS", "DOC", "CHAT", "VBOX", "VID", "MUS", "GFX"]
+keynames = [i for i in "123456789"]
+group_labels = ["", "", "", "", "", "", "", "", ""]
+for g in range(len(group_names)):
+    groups.append(
+        Group(
+            name=group_names[g],
+            label=group_labels[g],
+        )
     )
+# mod + i, moves screen to groups[i]
+# mod + shift + i, moves screen with active tab to groups[i]
+for keyname, group in zip(keynames, groups):
+    keys.extend([
+        Key([mod], keyname, lazy.group[group.name].toscreen()),
+        Key([mod, "shift"], keyname, lazy.window.togroup(group.name)),
+    ])
+
+# groups = [Group(i) for i in "123456789"]
+# 
+# for i in groups:
+#     keys.extend(
+#         [
+#             # mod1 + letter of group = switch to group
+#             Key(
+#                 [mod],
+#                 i.name,
+#                 lazy.group[i.name].toscreen(),
+#                 desc="Switch to group {}".format(i.name),
+#             ),
+#             # mod1 + shift + letter of group = switch to & move focused window to group
+#             Key(
+#                 [mod, "shift"],
+#                 i.name,
+#                 lazy.window.togroup(i.name, switch_group=False),
+#                 desc="Switch to & move focused window to group {}".format(i.name),
+#             ),
+#             # Or, use below if you prefer not to switch to that group.
+#             # # mod1 + shift + letter of group = move focused window to group
+#             # Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
+#             #     desc="move focused window to group {}".format(i.name)),
+#         ]
+#     )
 #comment
 layouts = [
-    layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
+    
+    layout.Columns(
+        border_focus_stack="#00aaff",
+        borderfocus='#00aaff',
+        bordernormal='#005580',
+        border_width=2
+    ),
+    
     layout.Max(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
@@ -135,7 +161,7 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font="sans",
+    font="MononokiNerdFont",
     fontsize=12,
     padding=3,
 )
@@ -146,11 +172,24 @@ screens = [
     Screen(
         wallpaper="~/Desktop/M3.jpg",
         wallpaper_mode="fill",
- 
         bottom=bar.Bar(
             [
-                widget.GroupBox(),
+                widget.CurrentScreen(
+                    active_color='#00aaff',
+                    active_text=' ',
+                    inactive_color='#404040',
+                    inactive_text=' ',
+                ),
+                
+                widget.GroupBox(
+                    active='#ffffff',
+                    this_current_screen_border='#00aaff',
+                    this_screen_border='#00ff6e',
+                    highlight_method='text'
+                ),
+                
                 widget.Prompt(),
+                widget.WindowCount(),
                 widget.WindowName(),
                 widget.Chord(
                     chords_colors={
@@ -161,8 +200,8 @@ screens = [
                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
                 # widget.StatusNotifier(),
                 widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
+                widget.ThermalSensor(update_interval='1'),
                 widget.CurrentLayoutIcon(),
-                widget.CurrentScreen(),
             ],
             24,
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
@@ -172,14 +211,26 @@ screens = [
     ),
 
     Screen(
-
         wallpaper="~/Desktop/M3.jpg",
         wallpaper_mode="fill",
-
         bottom=bar.Bar(
             [
-                widget.GroupBox(),
+                widget.CurrentScreen(
+                    active_color='#00aaff',
+                    active_text=' ',
+                    inactive_color='#404040',
+                    inactive_text=' ',
+                ),
+                
+                widget.GroupBox(
+                    active='#ffffff',
+                    this_current_screen_border='#00aaff',
+                    this_screen_border='#00ff6e',
+                    highlight_method='text'
+                ),
+                
                 widget.Prompt(),
+                widget.WindowCount(),
                 widget.WindowName(),
                 widget.Chord(
                     chords_colors={
@@ -190,15 +241,15 @@ screens = [
                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
                 # widget.StatusNotifier(),
                 widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
+                widget.ThermalSensor(update_interval='1'),
                 widget.CurrentLayoutIcon(),
-                widget.CurrentScreen(),
             ],
             24,
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
+       
     ),
-
 
 ]
 
